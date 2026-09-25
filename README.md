@@ -64,7 +64,7 @@ flowchart TD
     Handler --> Response[HTTP Response Builder]
     Response --> Socket
 
-    subgraph ResumeWorthy
+    subgraph 
         Logging[Structured logging]
         Metrics[Runtime metrics]
         Shutdown[Graceful shutdown]
