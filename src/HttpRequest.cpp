@@ -1,6 +1,8 @@
 #include "http_server/HttpRequest.h"
 
+#include <algorithm>
 #include <cctype>
+#include <cstring>
 #include <sstream>
 #include <vector>
 
@@ -94,8 +96,17 @@ ParseResult HttpRequestParser::parse(const std::string& rawRequest) {
         return result;
     }
 
-    if (result.request.method != "GET" && result.request.method != "POST") {
-        result.error = "Unsupported method";
+    const auto isValidMethodToken = [](const std::string& method) {
+        if (method.empty()) {
+            return false;
+        }
+        return std::all_of(method.begin(), method.end(), [](unsigned char ch) {
+            return std::isalnum(ch) != 0 || std::strchr("!#$%&'*+-.^_`|~", static_cast<char>(ch)) != nullptr;
+        });
+    };
+
+    if (!isValidMethodToken(result.request.method)) {
+        result.error = "Invalid method";
         return result;
     }
 

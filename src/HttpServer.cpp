@@ -3,6 +3,7 @@
 #include "http_server/HttpRequest.h"
 
 #include <arpa/inet.h>
+#include <chrono>
 #include <csignal>
 #include <cstring>
 #include <netinet/in.h>
@@ -22,6 +23,24 @@ void signalHandler(int) {
     if (g_running != nullptr) {
         *g_running = false;
     }
+}
+
+bool sendAll(int socket, const std::string& data) {
+    std::size_t sent = 0;
+    while (sent < data.size()) {
+        const ssize_t bytesSent = send(socket, data.data() + sent, data.size() - sent, 0);
+        if (bytesSent < 0) {
+            if (errno == EINTR) {
+                continue;
+            }
+            return false;
+        }
+        if (bytesSent == 0) {
+            return false;
+        }
+        sent += static_cast<std::size_t>(bytesSent);
+    }
+    return true;
 }
 
 }  // namespace
@@ -127,6 +146,13 @@ void HttpServer::acceptLoop() {
 }
 
 void HttpServer::handleClient(int clientSocket) {
+    const auto startTime = std::chrono::steady_clock::now();
+    metrics_.incrementActiveConnections();
+    auto cleanup = [&]() {
+        close(clientSocket);
+        metrics_.decrementActiveConnections();
+    };
+
     std::string rawRequest;
     char buffer[4096];
     const std::size_t maxRequestSize = 1'048'576;
@@ -134,12 +160,16 @@ void HttpServer::handleClient(int clientSocket) {
     while (running_) {
         const ssize_t bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesRead <= 0) {
+            if (bytesRead < 0 && errno != EAGAIN && errno != EWOULDBLOCK) {
+                metrics_.recordError();
+            }
             break;
         }
 
         rawRequest.append(buffer, static_cast<std::size_t>(bytesRead));
         if (rawRequest.size() > maxRequestSize) {
             logger_.warn("Request exceeded safe limit");
+            metrics_.recordError();
             break;
         }
 
@@ -157,18 +187,24 @@ void HttpServer::handleClient(int clientSocket) {
     if (rawRequest.empty()) {
         response.setStatus(400, "Bad Request");
         response.setBody("Bad Request");
+        metrics_.recordError();
     } else if (!parseResult.ok) {
         response.setStatus(400, "Bad Request");
         response.setBody(parseResult.error);
+        metrics_.recordError();
     } else {
         response = router_.route(parseResult.request);
     }
 
     const std::string serialized = response.serialize();
-    send(clientSocket, serialized.c_str(), serialized.size(), 0);
-    close(clientSocket);
+    if (!sendAll(clientSocket, serialized)) {
+        logger_.error("Failed to send full response");
+        metrics_.recordError();
+    }
 
+    cleanup();
     metrics_.recordRequest(rawRequest.size(), serialized.size());
+    metrics_.recordLatency(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - startTime));
     logger_.info("Served request: " + std::to_string(response.statusCode()) + " " + response.statusMessage());
 }
 

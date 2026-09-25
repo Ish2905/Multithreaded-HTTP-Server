@@ -17,6 +17,18 @@ TEST(HttpRequestParserTests, ParsesGetRequest) {
     EXPECT_EQ(result.request.headers.at("host"), "localhost:8080");
 }
 
+TEST(HttpRequestParserTests, ParsesAnyValidMethodToken) {
+    const std::string raw =
+        "DELETE /hello HTTP/1.1\r\n"
+        "Host: localhost:8080\r\n"
+        "\r\n";
+
+    const auto result = http_server::HttpRequestParser::parse(raw);
+    ASSERT_TRUE(result.ok);
+    EXPECT_EQ(result.request.method, "DELETE");
+    EXPECT_EQ(result.request.path, "/hello");
+}
+
 TEST(HttpRequestParserTests, ParsesPostWithBody) {
     const std::string raw =
         "POST /echo HTTP/1.1\r\n"

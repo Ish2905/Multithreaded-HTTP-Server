@@ -53,6 +53,8 @@ add_executable(httpserver_tests
     tests/HttpResponseTests.cpp
     tests/HttpRequestParserTests.cpp
     tests/RouterTests.cpp
+    tests/ThreadPoolTests.cpp
+    tests/HttpServerIntegrationTests.cpp
 )
 target_link_libraries(httpserver_tests PRIVATE httpserver GTest::gtest_main)
 

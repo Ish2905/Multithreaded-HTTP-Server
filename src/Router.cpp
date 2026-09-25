@@ -14,6 +14,8 @@ HttpResponse Router::route(const HttpRequest& request) const {
     HttpResponse response;
 
     const auto path = request.path;
+    const auto hasGet = getRoutes_.find(path) != getRoutes_.end();
+    const auto hasPost = postRoutes_.find(path) != postRoutes_.end();
 
     if (request.method == "GET") {
         const auto it = getRoutes_.find(path);
@@ -21,7 +23,7 @@ HttpResponse Router::route(const HttpRequest& request) const {
             return it->second(request);
         }
 
-        if (postRoutes_.find(path) != postRoutes_.end()) {
+        if (hasPost) {
             response.setStatus(405, "Method Not Allowed");
             response.setBody("Method Not Allowed");
             return response;
@@ -38,7 +40,7 @@ HttpResponse Router::route(const HttpRequest& request) const {
             return it->second(request);
         }
 
-        if (getRoutes_.find(path) != getRoutes_.end()) {
+        if (hasGet) {
             response.setStatus(405, "Method Not Allowed");
             response.setBody("Method Not Allowed");
             return response;
@@ -49,8 +51,14 @@ HttpResponse Router::route(const HttpRequest& request) const {
         return response;
     }
 
-    response.setStatus(405, "Method Not Allowed");
-    response.setBody("Method Not Allowed");
+    if (hasGet || hasPost) {
+        response.setStatus(405, "Method Not Allowed");
+        response.setBody("Method Not Allowed");
+        return response;
+    }
+
+    response.setStatus(404, "Not Found");
+    response.setBody("Not Found");
     return response;
 }
 

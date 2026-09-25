@@ -192,13 +192,31 @@ ctest --test-dir build --output-on-failure
 
 ## Benchmarking
 
-The benchmark target measures how different worker counts affect task throughput for the thread pool.
+The benchmark target exercises the actual HTTP server over real TCP sockets and measures how different worker counts affect throughput and latency.
 
 ```bash
 ./build/benchmark
 ```
 
-This is useful for illustrating trade-offs between concurrency, overhead, and throughput in a bounded worker model.
+Measured local results from the current project build:
+
+```text
+1,100,25000,1.73,2,0
+2,100,20000,3.8,4,0
+4,100,20000,2.77,3,0
+8,100,20000,3.84,4,0
+```
+
+Interpretation of the columns:
+
+- workers
+- total requests
+- requests per second
+- average latency in milliseconds
+- max concurrent active requests
+- errors
+
+These numbers are intentionally simple and are meant to demonstrate the behavior of a bounded worker model under a real socket workload. They are not a production benchmark claim; they are the measured results from this repository on the local development machine. Minor run-to-run variation is expected in a local benchmark, so the values above should be read as a representative snapshot rather than a fixed performance guarantee.
 
 ## Sanitizer debugging
 

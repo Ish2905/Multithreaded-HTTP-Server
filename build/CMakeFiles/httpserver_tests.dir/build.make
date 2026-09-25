@@ -114,11 +114,41 @@ CMakeFiles/httpserver_tests.dir/tests/RouterTests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/httpserver_tests.dir/tests/RouterTests.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/RouterTests.cpp -o CMakeFiles/httpserver_tests.dir/tests/RouterTests.cpp.s
 
+CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.o: CMakeFiles/httpserver_tests.dir/flags.make
+CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.o: /Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/ThreadPoolTests.cpp
+CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.o: CMakeFiles/httpserver_tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ishakishanvasisht/Multithreaded-HTTP-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.o -MF CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.o.d -o CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.o -c /Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/ThreadPoolTests.cpp
+
+CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/ThreadPoolTests.cpp > CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.i
+
+CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/ThreadPoolTests.cpp -o CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.s
+
+CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.o: CMakeFiles/httpserver_tests.dir/flags.make
+CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.o: /Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/HttpServerIntegrationTests.cpp
+CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.o: CMakeFiles/httpserver_tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ishakishanvasisht/Multithreaded-HTTP-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.o -MF CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.o.d -o CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.o -c /Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/HttpServerIntegrationTests.cpp
+
+CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/HttpServerIntegrationTests.cpp > CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.i
+
+CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/HttpServerIntegrationTests.cpp -o CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.s
+
 # Object files for target httpserver_tests
 httpserver_tests_OBJECTS = \
 "CMakeFiles/httpserver_tests.dir/tests/HttpResponseTests.cpp.o" \
 "CMakeFiles/httpserver_tests.dir/tests/HttpRequestParserTests.cpp.o" \
-"CMakeFiles/httpserver_tests.dir/tests/RouterTests.cpp.o"
+"CMakeFiles/httpserver_tests.dir/tests/RouterTests.cpp.o" \
+"CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.o" \
+"CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.o"
 
 # External object files for target httpserver_tests
 httpserver_tests_EXTERNAL_OBJECTS =
@@ -126,12 +156,14 @@ httpserver_tests_EXTERNAL_OBJECTS =
 httpserver_tests: CMakeFiles/httpserver_tests.dir/tests/HttpResponseTests.cpp.o
 httpserver_tests: CMakeFiles/httpserver_tests.dir/tests/HttpRequestParserTests.cpp.o
 httpserver_tests: CMakeFiles/httpserver_tests.dir/tests/RouterTests.cpp.o
+httpserver_tests: CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.o
+httpserver_tests: CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.o
 httpserver_tests: CMakeFiles/httpserver_tests.dir/build.make
 httpserver_tests: libhttpserver.a
 httpserver_tests: lib/libgtest_main.a
 httpserver_tests: lib/libgtest.a
 httpserver_tests: CMakeFiles/httpserver_tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/ishakishanvasisht/Multithreaded-HTTP-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable httpserver_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/ishakishanvasisht/Multithreaded-HTTP-server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable httpserver_tests"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/httpserver_tests.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

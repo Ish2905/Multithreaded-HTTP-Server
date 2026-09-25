@@ -1,2 +1,2 @@
-httpserver_tests 7 0.00114505
+httpserver_tests 10 0.0445851
 ---

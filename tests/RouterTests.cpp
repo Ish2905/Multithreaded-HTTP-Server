@@ -47,3 +47,21 @@ TEST(RouterTests, Returns405ForUnsupportedMethod) {
     EXPECT_EQ(response.statusCode(), 405);
     EXPECT_EQ(response.body(), "Method Not Allowed");
 }
+
+TEST(RouterTests, Returns405ForValidButUnsupportedMethod) {
+    http_server::Router router;
+    router.get("/hello", [](const http_server::HttpRequest&) {
+        http_server::HttpResponse response;
+        response.setStatus(200, "OK");
+        response.setBody("hello");
+        return response;
+    });
+
+    http_server::HttpRequest request;
+    request.method = "DELETE";
+    request.path = "/hello";
+
+    const auto response = router.route(request);
+    EXPECT_EQ(response.statusCode(), 405);
+    EXPECT_EQ(response.body(), "Method Not Allowed");
+}

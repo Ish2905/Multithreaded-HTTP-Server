@@ -903,6 +903,30 @@ tests/HttpResponseTests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/httpserver_tests.dir/build.make CMakeFiles/httpserver_tests.dir/tests/HttpResponseTests.cpp.s
 .PHONY : tests/HttpResponseTests.cpp.s
 
+tests/HttpServerIntegrationTests.o: tests/HttpServerIntegrationTests.cpp.o
+.PHONY : tests/HttpServerIntegrationTests.o
+
+# target to build an object file
+tests/HttpServerIntegrationTests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/httpserver_tests.dir/build.make CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.o
+.PHONY : tests/HttpServerIntegrationTests.cpp.o
+
+tests/HttpServerIntegrationTests.i: tests/HttpServerIntegrationTests.cpp.i
+.PHONY : tests/HttpServerIntegrationTests.i
+
+# target to preprocess a source file
+tests/HttpServerIntegrationTests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/httpserver_tests.dir/build.make CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.i
+.PHONY : tests/HttpServerIntegrationTests.cpp.i
+
+tests/HttpServerIntegrationTests.s: tests/HttpServerIntegrationTests.cpp.s
+.PHONY : tests/HttpServerIntegrationTests.s
+
+# target to generate assembly for a file
+tests/HttpServerIntegrationTests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/httpserver_tests.dir/build.make CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.s
+.PHONY : tests/HttpServerIntegrationTests.cpp.s
+
 tests/RouterTests.o: tests/RouterTests.cpp.o
 .PHONY : tests/RouterTests.o
 
@@ -926,6 +950,30 @@ tests/RouterTests.s: tests/RouterTests.cpp.s
 tests/RouterTests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/httpserver_tests.dir/build.make CMakeFiles/httpserver_tests.dir/tests/RouterTests.cpp.s
 .PHONY : tests/RouterTests.cpp.s
+
+tests/ThreadPoolTests.o: tests/ThreadPoolTests.cpp.o
+.PHONY : tests/ThreadPoolTests.o
+
+# target to build an object file
+tests/ThreadPoolTests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/httpserver_tests.dir/build.make CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.o
+.PHONY : tests/ThreadPoolTests.cpp.o
+
+tests/ThreadPoolTests.i: tests/ThreadPoolTests.cpp.i
+.PHONY : tests/ThreadPoolTests.i
+
+# target to preprocess a source file
+tests/ThreadPoolTests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/httpserver_tests.dir/build.make CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.i
+.PHONY : tests/ThreadPoolTests.cpp.i
+
+tests/ThreadPoolTests.s: tests/ThreadPoolTests.cpp.s
+.PHONY : tests/ThreadPoolTests.s
+
+# target to generate assembly for a file
+tests/ThreadPoolTests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/httpserver_tests.dir/build.make CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.s
+.PHONY : tests/ThreadPoolTests.cpp.s
 
 # Help Target
 help:
@@ -1009,9 +1057,15 @@ help:
 	@echo "... tests/HttpResponseTests.o"
 	@echo "... tests/HttpResponseTests.i"
 	@echo "... tests/HttpResponseTests.s"
+	@echo "... tests/HttpServerIntegrationTests.o"
+	@echo "... tests/HttpServerIntegrationTests.i"
+	@echo "... tests/HttpServerIntegrationTests.s"
 	@echo "... tests/RouterTests.o"
 	@echo "... tests/RouterTests.i"
 	@echo "... tests/RouterTests.s"
+	@echo "... tests/ThreadPoolTests.o"
+	@echo "... tests/ThreadPoolTests.i"
+	@echo "... tests/ThreadPoolTests.s"
 .PHONY : help
 
 

@@ -10,7 +10,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/HttpRequestParserTests.cpp" "CMakeFiles/httpserver_tests.dir/tests/HttpRequestParserTests.cpp.o" "gcc" "CMakeFiles/httpserver_tests.dir/tests/HttpRequestParserTests.cpp.o.d"
   "/Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/HttpResponseTests.cpp" "CMakeFiles/httpserver_tests.dir/tests/HttpResponseTests.cpp.o" "gcc" "CMakeFiles/httpserver_tests.dir/tests/HttpResponseTests.cpp.o.d"
+  "/Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/HttpServerIntegrationTests.cpp" "CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.o" "gcc" "CMakeFiles/httpserver_tests.dir/tests/HttpServerIntegrationTests.cpp.o.d"
   "/Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/RouterTests.cpp" "CMakeFiles/httpserver_tests.dir/tests/RouterTests.cpp.o" "gcc" "CMakeFiles/httpserver_tests.dir/tests/RouterTests.cpp.o.d"
+  "/Users/ishakishanvasisht/Multithreaded-HTTP-server/tests/ThreadPoolTests.cpp" "CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.o" "gcc" "CMakeFiles/httpserver_tests.dir/tests/ThreadPoolTests.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

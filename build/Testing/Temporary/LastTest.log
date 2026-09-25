@@ -1,47 +1,117 @@
-Start testing: Sep 25 14:16 IST
+Start testing: Sep 25 14:34 IST
 ----------------------------------------------------------
 1/1 Testing: httpserver_tests
 1/1 Test: httpserver_tests
 Command: "/Users/ishakishanvasisht/Multithreaded-HTTP-server/build/httpserver_tests"
 Directory: /Users/ishakishanvasisht/Multithreaded-HTTP-server/build
-"httpserver_tests" start time: Sep 25 14:16 IST
+"httpserver_tests" start time: Sep 25 14:34 IST
 Output:
 ----------------------------------------------------------
 Running main() from /Users/ishakishanvasisht/Multithreaded-HTTP-server/build/_deps/googletest-src/googletest/src/gtest_main.cc
-[==========] Running 7 tests from 3 test suites.
+[==========] Running 14 tests from 5 test suites.
 [----------] Global test environment set-up.
 [----------] 1 test from HttpResponseTests
 [ RUN      ] HttpResponseTests.SerializesStatusAndBody
 [       OK ] HttpResponseTests.SerializesStatusAndBody (0 ms)
 [----------] 1 test from HttpResponseTests (0 ms total)
 
-[----------] 3 tests from HttpRequestParserTests
+[----------] 4 tests from HttpRequestParserTests
 [ RUN      ] HttpRequestParserTests.ParsesGetRequest
 [       OK ] HttpRequestParserTests.ParsesGetRequest (0 ms)
+[ RUN      ] HttpRequestParserTests.ParsesAnyValidMethodToken
+[       OK ] HttpRequestParserTests.ParsesAnyValidMethodToken (0 ms)
 [ RUN      ] HttpRequestParserTests.ParsesPostWithBody
 [       OK ] HttpRequestParserTests.ParsesPostWithBody (0 ms)
 [ RUN      ] HttpRequestParserTests.RejectsInvalidContentLength
 [       OK ] HttpRequestParserTests.RejectsInvalidContentLength (0 ms)
-[----------] 3 tests from HttpRequestParserTests (0 ms total)
+[----------] 4 tests from HttpRequestParserTests (0 ms total)
 
-[----------] 3 tests from RouterTests
+[----------] 4 tests from RouterTests
 [ RUN      ] RouterTests.RoutesGetRequest
 [       OK ] RouterTests.RoutesGetRequest (0 ms)
 [ RUN      ] RouterTests.Returns404ForUnknownRoute
 [       OK ] RouterTests.Returns404ForUnknownRoute (0 ms)
 [ RUN      ] RouterTests.Returns405ForUnsupportedMethod
 [       OK ] RouterTests.Returns405ForUnsupportedMethod (0 ms)
-[----------] 3 tests from RouterTests (0 ms total)
+[ RUN      ] RouterTests.Returns405ForValidButUnsupportedMethod
+[       OK ] RouterTests.Returns405ForValidButUnsupportedMethod (0 ms)
+[----------] 4 tests from RouterTests (0 ms total)
+
+[----------] 3 tests from ThreadPoolTests
+[ RUN      ] ThreadPoolTests.ExecutesSubmittedTasks
+[       OK ] ThreadPoolTests.ExecutesSubmittedTasks (6 ms)
+[ RUN      ] ThreadPoolTests.ExecutesTasksConcurrently
+[       OK ] ThreadPoolTests.ExecutesTasksConcurrently (73 ms)
+[ RUN      ] ThreadPoolTests.ShutdownAwakesWorkersAndJoinsCleanly
+[       OK ] ThreadPoolTests.ShutdownAwakesWorkersAndJoinsCleanly (48 ms)
+[----------] 3 tests from ThreadPoolTests (129 ms total)
+
+[----------] 2 tests from HttpServerIntegrationTests
+[ RUN      ] HttpServerIntegrationTests.HandlesSingleRequest
+[14:34:49] [server] [INFO] Listening on http://127.0.0.1:51539
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Server accept loop ended
+[14:34:49] [server] [INFO] Runtime metrics: requests=1, errors=0, active_connections=0, bytes_in=59, bytes_out=85, total_latency_us=41
+[14:34:49] [server] [INFO] Runtime metrics: requests=1, errors=0, active_connections=0, bytes_in=59, bytes_out=85, total_latency_us=41
+[       OK ] HttpServerIntegrationTests.HandlesSingleRequest (155 ms)
+[ RUN      ] HttpServerIntegrationTests.HandlesConcurrentRequests
+[14:34:49] [server] [INFO] Listening on http://127.0.0.1:51541
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Accepted client connection
+[[[14:34:49] [server] [INFO] Served request: 200 OK
+14:34:49[] [server] [INFO] Served request: 200 OK
+14:34:49] [server] [INFO] Served request: 200 OK14:34:49
+] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Accepted client connection
+[[14:34:49] [server] [INFO] Accepted client connection
+14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Served request: 200 OK
+[[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [14:34:49] [server] [INFO] Accepted client connection
+server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Accepted client connection
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Served request: 200 OK
+[14:34:49] [server] [INFO] Server accept loop ended
+[14:34:49] [server] [INFO] Runtime metrics: requests=20, errors=0, active_connections=0, bytes_in=1180, bytes_out=1700, total_latency_us=765
+[14:34:49] [server] [INFO] Runtime metrics: requests=20, errors=0, active_connections=0, bytes_in=1180, bytes_out=1700, total_latency_us=765
+[       OK ] HttpServerIntegrationTests.HandlesConcurrentRequests (153 ms)
+[----------] 2 tests from HttpServerIntegrationTests (309 ms total)
 
 [----------] Global test environment tear-down
-[==========] 7 tests from 3 test suites ran. (0 ms total)
-[  PASSED  ] 7 tests.
+[==========] 14 tests from 5 test suites ran. (438 ms total)
+[  PASSED  ] 14 tests.
 <end of output>
-Test time =   0.01 sec
+Test time =   0.45 sec
 ----------------------------------------------------------
 Test Passed.
-"httpserver_tests" end time: Sep 25 14:16 IST
+"httpserver_tests" end time: Sep 25 14:34 IST
 "httpserver_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Sep 25 14:16 IST
+End testing: Sep 25 14:34 IST
