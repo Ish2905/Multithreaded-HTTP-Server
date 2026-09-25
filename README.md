@@ -175,6 +175,8 @@ The server implements the initial route set from the specification:
 Unknown routes return a 404 response.
 Known routes with unsupported methods return a 405 response.
 
+Each client connection handles one HTTP request and one response, then the server closes the connection. Clients should create a new TCP connection for each request; persistent HTTP/1.1 keep-alive and pipelined requests are intentionally outside this project's scope.
+
 ## Testing
 
 The project includes unit tests for:
@@ -183,6 +185,8 @@ The project includes unit tests for:
 - HTTP request parsing
 - HTTP request body handling
 - Route matching and method validation
+- Real TCP integration for single and concurrent clients
+- Graceful shutdown of the listening server
 
 Run the tests with:
 

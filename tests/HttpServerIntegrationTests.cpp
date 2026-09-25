@@ -161,4 +161,21 @@ TEST(HttpServerIntegrationTests, HandlesConcurrentRequests) {
     serverThread.join();
 }
 
+TEST(HttpServerIntegrationTests, StopsListeningServerGracefully) {
+    const int port = getAvailablePort();
+    http_server::HttpServer server("127.0.0.1", port, 2);
+
+    std::thread serverThread([&server]() {
+        server.start();
+    });
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(150));
+    ASSERT_TRUE(server.running());
+
+    server.stop();
+    serverThread.join();
+
+    EXPECT_FALSE(server.running());
+}
+
 }  // namespace
