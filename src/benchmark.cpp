@@ -93,14 +93,27 @@ struct BenchmarkResult {
     std::size_t requests;
     double requestsPerSecond;
     double averageLatencyMs;
+    double p50LatencyMs;
     double p95LatencyMs;
+    double p99LatencyMs;
     std::size_t errors;
 };
+
+double percentile(const std::vector<long long>& sortedLatencies, std::size_t percentileValue) {
+    if (sortedLatencies.empty()) {
+        return 0.0;
+    }
+
+    const std::size_t index = std::min(
+        sortedLatencies.size() - 1,
+        (sortedLatencies.size() * percentileValue + 99) / 100 - 1);
+    return static_cast<double>(sortedLatencies[index]);
+}
 
 BenchmarkResult measureWorkerCount(std::size_t workerCount, std::size_t requestsPerRun) {
     const int port = getAvailablePort();
     if (port == 0) {
-        return {workerCount, requestsPerRun, 0.0, 0.0, 0.0, requestsPerRun};
+        return {workerCount, requestsPerRun, 0.0, 0.0, 0.0, 0.0, 0.0, requestsPerRun};
     }
 
     http_server::Router router;
@@ -155,15 +168,17 @@ BenchmarkResult measureWorkerCount(std::size_t workerCount, std::size_t requests
 
     std::vector<long long> sortedLatencies = latencies;
     std::sort(sortedLatencies.begin(), sortedLatencies.end());
-    const std::size_t p95Index = std::max<std::size_t>(1, sortedLatencies.size() * 95 / 100) - 1;
     const double averageLatencyMs = static_cast<double>(std::accumulate(sortedLatencies.begin(), sortedLatencies.end(), 0LL)) /
         static_cast<double>(sortedLatencies.size());
-    const double p95LatencyMs = static_cast<double>(sortedLatencies[p95Index]);
+    const double p50LatencyMs = percentile(sortedLatencies, 50);
+    const double p95LatencyMs = percentile(sortedLatencies, 95);
+    const double p99LatencyMs = percentile(sortedLatencies, 99);
     const double requestsPerSecond = totalDuration > 0 ?
         static_cast<double>(requestsPerRun) / (static_cast<double>(totalDuration) / 1000.0) :
         0.0;
 
-    return {workerCount, requestsPerRun, requestsPerSecond, averageLatencyMs, p95LatencyMs, errors.load(std::memory_order_relaxed)};
+        return {workerCount, requestsPerRun, requestsPerSecond, averageLatencyMs, p50LatencyMs, p95LatencyMs,
+            p99LatencyMs, errors.load(std::memory_order_relaxed)};
 }
 
 }  // namespace
@@ -173,11 +188,12 @@ int main() {
     const std::size_t requestsPerRun = 100;
 
     std::cout << "HTTP server benchmark: actual TCP + HTTP requests\n";
-    std::cout << "workers,requests,throughput_rps,avg_latency_ms,p95_latency_ms,errors\n";
+    std::cout << "workers,requests,throughput_rps,avg_latency_ms,p50_latency_ms,p95_latency_ms,p99_latency_ms,errors\n";
     for (std::size_t workers : workerCounts) {
         const auto result = measureWorkerCount(workers, requestsPerRun);
         std::cout << workers << "," << result.requests << "," << result.requestsPerSecond << ","
-                  << result.averageLatencyMs << "," << result.p95LatencyMs << "," << result.errors << '\n';
+                  << result.averageLatencyMs << "," << result.p50LatencyMs << "," << result.p95LatencyMs << ","
+                  << result.p99LatencyMs << "," << result.errors << '\n';
     }
 
     return 0;

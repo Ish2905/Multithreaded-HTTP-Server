@@ -205,10 +205,10 @@ The benchmark target exercises the actual HTTP server over real TCP sockets and 
 Measured local results from the current project build:
 
 ```text
-1,100,25000,1.73,2,0
-2,100,20000,3.8,4,0
-4,100,20000,2.77,3,0
-8,100,20000,3.84,4,0
+1,100,20000,2.6,3,3,4,0
+2,100,20000,2.11,2,3,3,0
+4,100,16666.7,4.43,4,5,5,0
+8,100,10000,3.44,3,5,6,0
 ```
 
 Interpretation of the columns:
@@ -217,7 +217,9 @@ Interpretation of the columns:
 - total requests
 - requests per second
 - average latency in milliseconds
-- max concurrent active requests
+- p50 latency in milliseconds
+- p95 latency in milliseconds
+- p99 latency in milliseconds
 - errors
 
 These numbers are intentionally simple and are meant to demonstrate the behavior of a bounded worker model under a real socket workload. They are not a production benchmark claim; they are the measured results from this repository on the local development machine. Minor run-to-run variation is expected in a local benchmark, so the values above should be read as a representative snapshot rather than a fixed performance guarantee.
@@ -231,7 +233,7 @@ cmake -S . -B build -DENABLE_SANITIZERS=ON
 cmake --build build
 ```
 
-This is particularly useful for catching socket lifecycle mistakes and concurrency defects during development.
+This is particularly useful for catching socket lifecycle mistakes and concurrency defects during development. In the current macOS/AppleClang environment, the sanitizer build completed, but the test executable stalled after `AddressSanitizer: libc interceptors initialized` and before GoogleTest startup; no sanitizer diagnostic was reported.
 
 
 

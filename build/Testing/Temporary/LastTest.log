@@ -1,14 +1,14 @@
-Start testing: Sep 25 14:56 IST
+Start testing: Sep 25 15:35 IST
 ----------------------------------------------------------
 1/1 Testing: httpserver_tests
 1/1 Test: httpserver_tests
 Command: "/Users/ishakishanvasisht/Multithreaded-HTTP-server/build/httpserver_tests"
 Directory: /Users/ishakishanvasisht/Multithreaded-HTTP-server/build
-"httpserver_tests" start time: Sep 25 14:56 IST
+"httpserver_tests" start time: Sep 25 15:35 IST
 Output:
 ----------------------------------------------------------
 Running main() from /Users/ishakishanvasisht/Multithreaded-HTTP-server/build/_deps/googletest-src/googletest/src/gtest_main.cc
-[==========] Running 15 tests from 5 test suites.
+[==========] Running 16 tests from 5 test suites.
 [----------] Global test environment set-up.
 [----------] 1 test from HttpResponseTests
 [ RUN      ] HttpResponseTests.SerializesStatusAndBody
@@ -41,83 +41,92 @@ Running main() from /Users/ishakishanvasisht/Multithreaded-HTTP-server/build/_de
 [ RUN      ] ThreadPoolTests.ExecutesSubmittedTasks
 [       OK ] ThreadPoolTests.ExecutesSubmittedTasks (6 ms)
 [ RUN      ] ThreadPoolTests.ExecutesTasksConcurrently
-[       OK ] ThreadPoolTests.ExecutesTasksConcurrently (73 ms)
+[       OK ] ThreadPoolTests.ExecutesTasksConcurrently (77 ms)
 [ RUN      ] ThreadPoolTests.ShutdownAwakesWorkersAndJoinsCleanly
-[       OK ] ThreadPoolTests.ShutdownAwakesWorkersAndJoinsCleanly (47 ms)
-[----------] 3 tests from ThreadPoolTests (127 ms total)
+[       OK ] ThreadPoolTests.ShutdownAwakesWorkersAndJoinsCleanly (45 ms)
+[----------] 3 tests from ThreadPoolTests (129 ms total)
 
-[----------] 3 tests from HttpServerIntegrationTests
+[----------] 4 tests from HttpServerIntegrationTests
 [ RUN      ] HttpServerIntegrationTests.HandlesSingleRequest
-[14:56:23] [server] [INFO] Listening on http://127.0.0.1:52333
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Served request: 200 OK
-[14:56:23] [server] [INFO] Server accept loop ended
-[14:56:23] [server] [INFO] Runtime metrics: requests=1, errors=0, active_connections=0, bytes_in=59, bytes_out=85, total_latency_us=73
-[14:56:23] [server] [INFO] Runtime metrics: requests=1, errors=0, active_connections=0, bytes_in=59, bytes_out=85, total_latency_us=73
-[       OK ] HttpServerIntegrationTests.HandlesSingleRequest (151 ms)
+[15:35:55] [server] [INFO] Listening on http://127.0.0.1:53467
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] Server accept loop ended
+[15:35:55] [server] [INFO] Runtime metrics: requests=1, errors=0, active_connections=0, bytes_in=59, bytes_out=85, total_latency_us=40
+[15:35:55] [server] [INFO] Runtime metrics: requests=1, errors=0, active_connections=0, bytes_in=59, bytes_out=85, total_latency_us=40
+[       OK ] HttpServerIntegrationTests.HandlesSingleRequest (152 ms)
 [ RUN      ] HttpServerIntegrationTests.HandlesConcurrentRequests
-[14:56:23] [server] [INFO] Listening on http://127.0.0.1:52336
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Served request: 200 OK
-[14:56:23] [server] [INFO] Accepted client connection
-[[14:56:23] [server] [INFO14:56:23] [] serverServed request: 200 OK] [
-INFO] Accepted client connection
-[14:56:23] [server] [INFO] Served request: 200 OK
-[14:56:23] [server] [INFO] Accepted client connection
-[[14:56:23] [server] [INFO] Served request: 200 OK
-14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Served request: 200 OK[
-14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Accepted client connection
-[[14:56:23] [server] [INFO] Served request: 200 OK14:56:23
-] [[14:56:23] [server] [INFO] Served request: 200 OK
-[14:56:23] [server] [INFO] Served request: 200 OK
-[server] [INFO] Accepted client connection
-[[14:56:23] [server] [INFO] Accepted client connection
-14:56:23] [server] [INFO] Served request: 200 OK
-[14:56:23] [server] [INFO] Served request: 200 OK
-[14:56:23] [server] [INFO] Served request: 200 OK
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Served request: 200 OK
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Accepted client connection
-[14:56:23] [server] [INFO] Served request: 200 OK
-[14:56:23] [server] [INFO] Served request: 200 OK
-14:56:23] [[[14:56:23] [server] [INFO] Served request: 200 OK
-[14:56:23] [14:56:23serverserver] [INFO] Served request: 200 OK
-] [INFO] Served request: 200 OK
-[14:56:23] [server] [INFO] Served request: 200 OK
-] [server] [INFO] Served request: 200 OK
-[14:56:23] [server] [INFO] Served request: 200 OK
-[14:56:23] [server] [INFO] Server accept loop ended
-[14:56:23] [server] [INFO] Runtime metrics: requests=20, errors=0, active_connections=0, bytes_in=1180, bytes_out=1700, total_latency_us=794
-[14:56:23] [server] [INFO] Runtime metrics: requests=20, errors=0, active_connections=0, bytes_in=1180, bytes_out=1700, total_latency_us=794
-[       OK ] HttpServerIntegrationTests.HandlesConcurrentRequests (156 ms)
+[15:35:55] [server] [INFO] Listening on http://127.0.0.1:53469
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Accepted client connection
+[[15:35:55] [server] [INFO] Accepted client connection
+15:35:55[] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] Accepted client connection
+[[15:35:55] [server] [INFO] Served request: 200 OK
+15:35:55] [server] [INFO] Served request: 200 OK[15:35:55] [server] [INFO] Served request: 200 OK
+
+[[15:35:55] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] Served request: 200 OK
+15:35:55] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] Accepted client connection
+15:35:55] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] Accepted client connection
+[[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Served request: 200 OK
+15:35:55] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server[15:35:55] [server] [INFO] Served request: 200 OK
+] [INFO] Accepted client connection
+[15:35:55] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] [15:35:55] [server] [INFO] Served request: 200 OK
+[15:35:55] [server] [INFO] Served request: 200 OK
+Served request: 200 OK
+[15:35:55] [server] [INFO] Server accept loop ended
+[15:35:55] [server] [INFO] Runtime metrics: requests=20, errors=0, active_connections=0, bytes_in=1180, bytes_out=1700, total_latency_us=1166
+[15:35:55] [server] [INFO] Runtime metrics: requests=20, errors=0, active_connections=0, bytes_in=1180, bytes_out=1700, total_latency_us=1166
+[       OK ] HttpServerIntegrationTests.HandlesConcurrentRequests (154 ms)
 [ RUN      ] HttpServerIntegrationTests.StopsListeningServerGracefully
-[14:56:23] [server] [INFO] Listening on http://127.0.0.1:52357
-[14:56:23] [server] [INFO] Server accept loop ended
-[14:56:23] [server] [INFO] Runtime metrics: requests=0, errors=0, active_connections=0, bytes_in=0, bytes_out=0, total_latency_us=0
-[14:56:23] [server] [INFO] Runtime metrics: requests=0, errors=0, active_connections=0, bytes_in=0, bytes_out=0, total_latency_us=0
-[       OK ] HttpServerIntegrationTests.StopsListeningServerGracefully (151 ms)
-[----------] 3 tests from HttpServerIntegrationTests (459 ms total)
+[15:35:55] [server] [INFO] Listening on http://127.0.0.1:53490
+[15:35:55] [server] [INFO] Server accept loop ended
+[15:35:55] [server] [INFO] Runtime metrics: requests=0, errors=0, active_connections=0, bytes_in=0, bytes_out=0, total_latency_us=0
+[15:35:55] [server] [INFO] Runtime metrics: requests=0, errors=0, active_connections=0, bytes_in=0, bytes_out=0, total_latency_us=0
+[       OK ] HttpServerIntegrationTests.StopsListeningServerGracefully (150 ms)
+[ RUN      ] HttpServerIntegrationTests.Returns500WhenHandlerFails
+[15:35:55] [server] [INFO] Listening on http://127.0.0.1:53491
+[15:35:55] [server] [INFO] Accepted client connection
+[15:35:55] [server] [ERROR] Request handler failed: handler failure
+[15:35:55] [server] [INFO] Served request: 500 Internal Server Error
+[15:35:55] [server] [INFO] Server accept loop ended
+[15:35:55] [server] [INFO] Runtime metrics: requests=1, errors=1, active_connections=0, bytes_in=61, bytes_out=120, total_latency_us=116
+[15:35:55] [server] [INFO] Runtime metrics: requests=1, errors=1, active_connections=0, bytes_in=61, bytes_out=120, total_latency_us=116
+[       OK ] HttpServerIntegrationTests.Returns500WhenHandlerFails (156 ms)
+[----------] 4 tests from HttpServerIntegrationTests (614 ms total)
 
 [----------] Global test environment tear-down
-[==========] 15 tests from 5 test suites ran. (587 ms total)
-[  PASSED  ] 15 tests.
+[==========] 16 tests from 5 test suites ran. (744 ms total)
+[  PASSED  ] 16 tests.
 <end of output>
-Test time =   1.32 sec
+Test time =   0.75 sec
 ----------------------------------------------------------
 Test Passed.
-"httpserver_tests" end time: Sep 25 14:56 IST
-"httpserver_tests" time elapsed: 00:00:01
+"httpserver_tests" end time: Sep 25 15:35 IST
+"httpserver_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Sep 25 14:56 IST
+End testing: Sep 25 15:35 IST

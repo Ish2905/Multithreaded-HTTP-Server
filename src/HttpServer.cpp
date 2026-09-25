@@ -134,6 +134,7 @@ void HttpServer::acceptLoop() {
             }
             if (running_) {
                 logger_.error("accept failed");
+                metrics_.recordError();
             }
             break;
         }
@@ -193,7 +194,19 @@ void HttpServer::handleClient(int clientSocket) {
         response.setBody(parseResult.error);
         metrics_.recordError();
     } else {
-        response = router_.route(parseResult.request);
+        try {
+            response = router_.route(parseResult.request);
+        } catch (const std::exception& error) {
+            logger_.error("Request handler failed: " + std::string(error.what()));
+            metrics_.recordError();
+            response.setStatus(500, "Internal Server Error");
+            response.setBody("Internal Server Error");
+        } catch (...) {
+            logger_.error("Request handler failed with an unknown error");
+            metrics_.recordError();
+            response.setStatus(500, "Internal Server Error");
+            response.setBody("Internal Server Error");
+        }
     }
 
     const std::string serialized = response.serialize();

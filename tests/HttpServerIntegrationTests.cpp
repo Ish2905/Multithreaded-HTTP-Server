@@ -178,4 +178,39 @@ TEST(HttpServerIntegrationTests, StopsListeningServerGracefully) {
     EXPECT_FALSE(server.running());
 }
 
+TEST(HttpServerIntegrationTests, Returns500WhenHandlerFails) {
+    const int port = getAvailablePort();
+    http_server::Router router;
+    router.get("/failure", [](const http_server::HttpRequest&) -> http_server::HttpResponse {
+        throw std::runtime_error("handler failure");
+    });
+
+    http_server::HttpServer server("127.0.0.1", port, 2);
+    server.setRouter(router);
+
+    std::thread serverThread([&server]() {
+        server.start();
+    });
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(150));
+    const int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+    ASSERT_NE(clientSocket, -1);
+
+    sockaddr_in serverAddress{};
+    serverAddress.sin_family = AF_INET;
+    serverAddress.sin_port = htons(static_cast<uint16_t>(port));
+    serverAddress.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+
+    ASSERT_EQ(connect(clientSocket, reinterpret_cast<sockaddr*>(&serverAddress), sizeof(serverAddress)), 0);
+    const std::string request = "GET /failure HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n";
+    ASSERT_GT(send(clientSocket, request.data(), request.size(), 0), 0);
+
+    const std::string response = readResponse(clientSocket);
+    EXPECT_NE(response.find("HTTP/1.1 500 Internal Server Error"), std::string::npos);
+
+    close(clientSocket);
+    server.stop();
+    serverThread.join();
+}
+
 }  // namespace
