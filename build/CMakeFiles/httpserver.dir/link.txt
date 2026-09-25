@@ -1,0 +1,2 @@
+/usr/bin/ar qc libhttpserver.a CMakeFiles/httpserver.dir/src/HttpResponse.cpp.o CMakeFiles/httpserver.dir/src/HttpRequest.cpp.o CMakeFiles/httpserver.dir/src/Router.cpp.o CMakeFiles/httpserver.dir/src/ThreadPool.cpp.o CMakeFiles/httpserver.dir/src/HttpServer.cpp.o CMakeFiles/httpserver.dir/src/Logger.cpp.o CMakeFiles/httpserver.dir/src/RuntimeMetrics.cpp.o
+/usr/bin/ranlib libhttpserver.a
