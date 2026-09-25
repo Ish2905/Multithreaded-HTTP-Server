@@ -21,7 +21,6 @@ This project covers the following areas:
 - Load testing and performance benchmarking
 - Sanitizer-based debugging workflow
 - CMake-based project organization
-- Git and clean project structure for portfolio work
 
 ## Core project scope
 
@@ -42,8 +41,6 @@ At the core, the server includes the following capabilities:
 - CMake build system
 - Unit and integration tests
 
-The resume-worthy additions include:
-
 - Graceful shutdown
 - Structured logging
 - Runtime metrics
@@ -52,20 +49,6 @@ The resume-worthy additions include:
 - Worker-count comparisons
 - Sanitizer-based debugging
 - Strong technical documentation
-
-## Phase order
-
-The implementation follows the document's staged build strategy:
-
-1. Phase 1: Basic TCP server
-2. Phase 2: HTTP response serialization
-3. Phase 3: HTTP request parsing and validation
-4. Phase 4: Routing and handler registration
-5. Phase 5: Single-threaded HTTP server
-6. Phase 6: Concurrency and thread handling
-7. Phase 7: Thread pool and task queue
-8. Phase 8: Integration with the server
-9. Phase 9: Shared-state synchronization, metrics, logging, and graceful shutdown
 
 ## Architecture overview
 
@@ -81,7 +64,7 @@ flowchart TD
     Handler --> Response[HTTP Response Builder]
     Response --> Socket
 
-    subgraph ResumeWorthy[Resume-worthy additions]
+    subgraph ResumeWorthy
         Logging[Structured logging]
         Metrics[Runtime metrics]
         Shutdown[Graceful shutdown]
@@ -228,13 +211,6 @@ cmake --build build
 
 This is particularly useful for catching socket lifecycle mistakes and concurrency defects during development.
 
-## Docker note
 
-Docker is optional for this project. It is useful for reproducible CI or containerized execution, but the native local build remains the primary workflow because the project is designed to teach low-level socket behavior, local debugging, and system-level server mechanics.
 
-## Notes
 
-- The project is intentionally compact and readable so it can be explained in an interview.
-- The implementation is intentionally aligned with the project specification rather than adding unrelated frameworks or abstractions.
-- Logging, metrics, graceful shutdown, benchmarking, and sanitizer support sit around the core server rather than replacing it.
-- The server is small enough to understand deeply, but rich enough to demonstrate modern systems-programming principles in C++.
